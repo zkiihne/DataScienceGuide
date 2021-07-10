@@ -1,9 +1,13 @@
+############ Step 1
+# This is where we shape the data into a workable form
+
+### Import Data
 data_raw = pd.read_csv('../input/train.csv')
 data_val  = pd.read_csv('../input/test.csv')
 data1 = data_raw.copy(deep = True)
 data_cleaner = [data1, data_val]
 
-# Initial Analysis of data
+### Initial Analysis of data
 print (data_raw.info())
 print(data_raw.sample(10))
 print('Train columns with null values:\n', data1.isnull().sum())
