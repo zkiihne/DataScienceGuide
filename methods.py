@@ -20,8 +20,6 @@ def cross_validation(X, Y, model, num_splits=5):
   return results
 
 def describe(df, pathtodfcsv):
-    report_1 = df.profile_report()
-    print(report_1)
     
     AV = AutoViz_Class()
     report_2 = AV.AutoViz(pathtodfcsv)
@@ -32,3 +30,7 @@ def describe(df, pathtodfcsv):
     matrix_df = pps.matrix(df)[['x', 'y', 'ppscore']].pivot(columns='x', index='y', values='ppscore')
     matrix_df = matrix_df.apply(lambda x: round(x, 2)) # Rounding matrix_df's values to 0,XX
     sns.heatmap(matrix_df, vmin=0, vmax=1, cmap="Blues", linewidths=0.75, annot=True)
+    
+!pip install pandas-profiling==2.8.0
+import pandas_profiling as pp
+df.profile_report()
