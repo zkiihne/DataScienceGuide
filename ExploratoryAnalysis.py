@@ -15,10 +15,11 @@ print(train1_x_bin.head())
 ### Exploration
 # Discrete Variable Correlation by Survival using roup by aka pivot table: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html
 # Compare each variable to the target, as a baseline
-for x in data1_x:
-    if data1[x].dtype != 'float64' :
+for x in data1:
+    if data1[x].dtype != 'float64' and x != Target[0]:
         print('Survival Correlation by:', x)
-        print(data1[[x, Target[0]]].groupby(x, as_index=False).mean())
+        d = data1[[x, Target[0]]]
+        print(d.groupby(x, as_index=False).mean())
         print('-'*10, '\n')
 # using crosstabs: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.crosstab.html
 print(pd.crosstab(data1['Title'],data1[Target[0]]))
